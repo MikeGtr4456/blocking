@@ -1,7 +1,7 @@
 import turtle
 
 def draw_rectangle(t, x, y, width, height, color):
-    """Menggambar persegi panjang dengan warna tertentu."""
+    """Menggambar persegi panjang."""
     t.penup()
     t.goto(x, y)
     t.pendown()
@@ -14,17 +14,79 @@ def draw_rectangle(t, x, y, width, height, color):
         t.left(90)
     t.end_fill()
 
+def draw_triangle(t, x, y, base, height, color):
+    """Menggambar segitiga."""
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+    t.fillcolor(color)
+    t.begin_fill()
+    t.goto(x + base / 2, y + height)
+    t.goto(x + base, y)
+    t.goto(x, y)
+    t.end_fill()
+
+def draw_trapezium(t, x, y, top, bottom, height, color):
+    """Menggambar trapezium."""
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+    t.fillcolor(color)
+    t.begin_fill()
+    t.goto(x + (bottom - top) / 2, y + height)
+    t.goto(x + bottom - (bottom - top) / 2, y + height)
+    t.goto(x + bottom, y)
+    t.goto(x, y)
+    t.end_fill()
+
+def draw_parallelogram(t, x, y, base, side, angle, color):
+    """Menggambar jajar genjang."""
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+    t.fillcolor(color)
+    t.begin_fill()
+    t.forward(base)
+    t.left(180 - angle)
+    t.forward(side)
+    t.left(angle)
+    t.backward(base)
+    t.left(180 - angle)
+    t.backward(side)
+    t.end_fill()
+
+def draw_pentagon(t, x, y, side, color):
+    """Menggambar segilima."""
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+    t.fillcolor(color)
+    t.begin_fill()
+    for _ in range(5):
+        t.forward(side)
+        t.left(72)  # Sudut dalam segilima
+    t.end_fill()
+
 # Pengaturan layar dan turtle
 t = turtle.Turtle()
-t.speed(5)
+t.speed(3)
 screen = turtle.Screen()
 screen.bgcolor("white")
 
-# Menggambar bagian merah (atas)
-draw_rectangle(t, -300, 100, 600, 150, "red")
+# Menggambar persegi panjang (merah)
+draw_rectangle(t, -300, 200, 200, 100, "red")
 
-# Menggambar bagian putih (bawah)
-draw_rectangle(t, -300, -50, 600, 150, "white")
+# Menggambar segitiga (kuning)
+draw_triangle(t, -50, 200, 150, 100, "yellow")
+
+# Menggambar trapezium (hijau)
+draw_trapezium(t, 150, 200, 80, 150, 100, "green")
+
+# Menggambar jajar genjang (biru)
+draw_parallelogram(t, -300, -50, 150, 100, 60, "blue")
+
+# Menggambar segilima (ungu)
+draw_pentagon(t, 100, -50, 100, "purple")
 
 # Menyembunyikan turtle
 t.hideturtle()
