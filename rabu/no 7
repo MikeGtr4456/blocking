@@ -1,0 +1,38 @@
+import turtle
+import time
+import random
+
+print("This program draws shapes based on the number you enter in a uniform pattern.")
+num_str = input("Enter the number of sides of the shape you want to draw: ")
+
+if num_str.isdigit():
+    sides = int(num_str)
+    angle = 180 - (180 * (sides - 2) / sides)  # Calculate the interior angle of the polygon
+
+    # Set up the turtle
+    turtle.speed(0)  # Fastest drawing
+    turtle.bgcolor("black")  # Background color
+    num_shapes = 8  # Number of shapes to draw
+
+    for _ in range(num_shapes):
+        turtle.penup()
+        # Random position
+        x = random.randint(-200, 200)
+        y = random.randint(-200, 200)
+        turtle.setpos(x, y)
+        turtle.pendown()
+
+        # Random color
+        turtle.color(random.random(), random.random(), random.random())
+        turtle.begin_fill()
+
+        for _ in range(sides):
+            turtle.forward(50)  # Side length
+            turtle.left(360 / sides)
+
+        turtle.end_fill()
+
+    time.sleep(5)  # Delay before closing
+    turtle.bye()
+else:
+    print("Invalid input! Please enter a positive integer.")
