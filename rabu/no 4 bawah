@@ -1,0 +1,42 @@
+import turtle
+import math
+
+# Fungsi untuk menggambar pohon Fibonacci
+def fibonacci_tree(t, length, level):
+    """Membuat pohon berdasarkan panjang dan tingkat level"""
+    if level == 0:
+        return
+    
+    # Menggambar batang pohon
+    t.forward(length)
+    
+    # Jika tingkat level lebih dari 0, menggambar cabang kiri dan kanan
+    t.left(45)
+    fibonacci_tree(t, length * math.sin(math.radians(45)), level - 1)  # Cabang kiri
+    t.right(90)
+    fibonacci_tree(t, length * math.sin(math.radians(45)), level - 1)  # Cabang kanan
+    t.left(45)
+    
+    t.backward(length)  # Kembali ke posisi semula
+
+# Setup turtle
+screen = turtle.Screen()
+screen.bgcolor("white")
+t = turtle.Turtle()
+t.speed(0)  # Set kecepatan tertinggi
+t.left(90)  # Arahkan turtle ke atas
+
+# Mulai menggambar Fibonacci Tree
+t.penup()
+t.goto(0, -200)  # Mulai dari bawah tengah layar
+t.pendown()
+t.color("brown")
+
+# Pangkal pohon dengan panjang batang awal dan tingkat kedalaman
+fibonacci_tree(t, 100, 8)
+
+# Menyembunyikan turtle setelah selesai menggambar
+t.hideturtle()
+
+# Menjaga layar tetap terbuka
+turtle.done()
