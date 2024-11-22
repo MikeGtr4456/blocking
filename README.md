@@ -1,2 +1,0 @@
-# blocking
-buat tugas bro
