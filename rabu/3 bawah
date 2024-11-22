@@ -1,0 +1,33 @@
+import turtle
+
+def draw_rectangle(t, x, y, width, height, color):
+    """Menggambar persegi panjang dengan warna tertentu."""
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+    t.fillcolor(color)
+    t.begin_fill()
+    for _ in range(2):
+        t.forward(width)
+        t.left(90)
+        t.forward(height)
+        t.left(90)
+    t.end_fill()
+
+# Pengaturan layar dan turtle
+t = turtle.Turtle()
+t.speed(5)
+screen = turtle.Screen()
+screen.bgcolor("white")
+
+# Menggambar bagian merah (atas)
+draw_rectangle(t, -300, 100, 600, 150, "red")
+
+# Menggambar bagian putih (bawah)
+draw_rectangle(t, -300, -50, 600, 150, "white")
+
+# Menyembunyikan turtle
+t.hideturtle()
+
+# Menjaga layar tetap terbuka
+turtle.done()
